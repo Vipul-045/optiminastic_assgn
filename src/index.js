@@ -13,12 +13,10 @@ app.use('/orders', require('./routes/orders'));  // POST /orders
                                                  // GET  /orders/:order_id
 app.use('/wallet', require('./routes/wallet'));  // GET  /wallet/balance
 
-// ── 404 ───────────────────────────────────────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({ error: `Route ${req.method} ${req.path} not found` });
 });
 
-// ── Global error handler ──────────────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.message);
   // PostgreSQL: balance CHECK constraint violated (balance < 0)
